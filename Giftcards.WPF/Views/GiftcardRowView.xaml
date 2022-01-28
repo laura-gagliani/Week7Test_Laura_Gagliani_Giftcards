@@ -21,33 +21,44 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding Path=Recipient}"/>
-            <TextBlock Grid.Column="1" Text="{Binding Path=Amount}"/>
-            <CheckBox Grid.Column="2" Content="additional det." VerticalAlignment="Center"
+            <TextBlock Grid.Column="0" Text="From: " VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="{Binding Path=Recipient}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="$: " VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Text="{Binding Path=Amount}" VerticalAlignment="Center"/>
+            <CheckBox Grid.Column="4" Content="additional det." VerticalAlignment="Center"
                       IsChecked="{Binding Path=ShowDetails}"/>
-            <Button Grid.Column="3" Content="update" Margin="10"/>
-            <Button Grid.Column="4" Content="delete" Margin="10"/>
+            <Button Grid.Column="5" Content="Update" Margin="10" FontFamily="arial" Command="{Binding Path=UpdateGiftcardCommand}"/>
+            <Button Grid.Column="6" Content="Delete" Margin="10" FontFamily="arial" Command="{Binding Path=DeleteGiftcardCommand}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid Visibility="{Binding Path=ShowDetails, Converter={StaticResource BoolToVisibility}}">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding Path=Id}"/>
-                <TextBlock Grid.Column="1" Text="{Binding Path=ExpirationDate}"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Sender}"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Message}"/>
+                
+                <TextBlock Grid.Column="0" Text="Giftcard Id: "/>
+                <TextBlock Grid.Column="1" Text="{Binding Path=Id}"/>
+                <TextBlock Grid.Column="2" Text="Expiration date: "/>
+                <TextBlock Grid.Column="3" Text="{Binding Path=TextDateTime}"/>
+                <TextBlock Grid.Column="4"  Text="From: "/>
+                <TextBlock Grid.Column="5"  Text="{Binding Path=Sender}"/>
+                <TextBlock Grid.Column="6"  Text="Message: "/>
+                <TextBlock Grid.Column="7"  Text="{Binding Path=Message}"/>
             </Grid>
         </Grid>
     </Grid>

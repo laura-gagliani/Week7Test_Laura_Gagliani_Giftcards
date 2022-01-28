@@ -22,10 +22,18 @@ namespace Giftcards.Core.Mock.Repositories
                 throw new ArgumentNullException(nameof(newGiftcard));
 
             //la card è passata senza id; glielo aggiungo qui
-            int maxId = Storage.Giftcards.Max(x => x.Id);
-            newGiftcard.Id = maxId + 1;
+
+            if (Storage.Giftcards.Count == 0)
+                newGiftcard.Id = 1;
+
+            else
+            {
+                int maxId = Storage.Giftcards.Max(x => x.Id);
+                newGiftcard.Id = maxId + 1;
+            }               
 
             Storage.Giftcards.Add(newGiftcard);
+            
         }
 
         public void DeleteGiftcard(Giftcard giftcardToDelete)
@@ -46,7 +54,10 @@ namespace Giftcards.Core.Mock.Repositories
 
         public void UpdateGiftcard(Giftcard updatedGiftcard)
         {
-            throw new NotImplementedException();
+            Giftcard existingCard = Storage.Giftcards.SingleOrDefault(x => x.Id == updatedGiftcard.Id); 
+
+            Storage.Giftcards.Remove(existingCard);
+            Storage.Giftcards.Add(updatedGiftcard);
         }
     }
 }

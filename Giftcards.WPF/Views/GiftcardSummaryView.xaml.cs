@@ -26,6 +26,16 @@ namespace Giftcards.WPF.Views
         {
             InitializeComponent();
             Messenger.Default.Register<ShowCreateFormMessage>(this, OnShowCreateFormMessageReceived);
+            Messenger.Default.Register<ShowUpdateFormMessage>(this, OnShowUpdateFormMessageReceived);
+        }
+
+        private void OnShowUpdateFormMessageReceived(ShowUpdateFormMessage message)
+        {
+            UpdateGiftcardView updateView = new UpdateGiftcardView();
+            UpdateGiftcardViewModel updateViewModel = new UpdateGiftcardViewModel(message.Giftcard);
+            updateView.DataContext = updateViewModel;
+
+            updateView.Show();
         }
 
         private void OnShowCreateFormMessageReceived(ShowCreateFormMessage message)

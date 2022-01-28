@@ -53,5 +53,18 @@ namespace Giftcards.Core.BusinessLayers
             _giftcardRepo.DeleteGiftcard(existingGiftcard);
             return new Response { IsSuccessful = true, Message = $"Giftcard with Id {existingGiftcard.Id} successfully deleted" };
         }
+
+        public Response UpdateGiftcard(Giftcard updatedGiftcard)
+        {
+            if (updatedGiftcard == null)
+                return new Response { IsSuccessful = false, Message = "Invalid entity" };
+            Giftcard existingCard = _giftcardRepo.FetchAll().SingleOrDefault(x => x.Id == updatedGiftcard.Id);
+            if (existingCard == null)
+                return new Response { IsSuccessful = false, Message = "No giftcard with this Id!" };
+
+            _giftcardRepo.UpdateGiftcard(updatedGiftcard);
+            return new Response() { IsSuccessful = true, Message = $"Giftcard with Id {updatedGiftcard.Id} successfully updated" };
+
+        }
     }
 }
