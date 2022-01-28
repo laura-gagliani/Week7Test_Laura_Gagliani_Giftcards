@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Giftcards.WPF.Views"
              xmlns:vm="clr-namespace:Giftcards.WPF.ViewModels"
+             xmlns:converter="clr-namespace:Giftcards.WPF.Converters"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=vm:GiftcardRowViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="100" d:DesignWidth="590">
+
+    <UserControl.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -21,12 +27,28 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="2" Content="additional det."/>
-            <Button Grid.Column="3" Content="update"/>
-            <Button Grid.Column="4" Content="delete"/>
+            <TextBlock Grid.Column="0" Text="{Binding Path=Recipient}"/>
+            <TextBlock Grid.Column="1" Text="{Binding Path=Amount}"/>
+            <CheckBox Grid.Column="2" Content="additional det." VerticalAlignment="Center"
+                      IsChecked="{Binding Path=ShowDetails}"/>
+            <Button Grid.Column="3" Content="update" Margin="10"/>
+            <Button Grid.Column="4" Content="delete" Margin="10"/>
         </Grid>
         <Grid Grid.Row="1">
-            <TextBlock Text="additional details"/>
+            <Grid Visibility="{Binding Path=ShowDetails, Converter={StaticResource BoolToVisibility}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Path=Id}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Path=ExpirationDate}"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Sender}"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Message}"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

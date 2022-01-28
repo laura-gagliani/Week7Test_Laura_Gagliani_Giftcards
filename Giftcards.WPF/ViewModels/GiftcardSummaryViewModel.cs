@@ -1,8 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Giftcards.Core.BusinessLayers;
 using Giftcards.Core.Entities;
 using Giftcards.Core.Mock.Repositories;
+using Giftcards.WPF.Messages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,14 +50,14 @@ namespace Giftcards.WPF.ViewModels
 
             foreach (var item in giftcards)
             {
-                GiftcardRowViewModel row = new GiftcardRowViewModel();
+                GiftcardRowViewModel row = new GiftcardRowViewModel(item);
                 _giftcardSource.Add(row);
             }
         }
 
         private void ExecuteShowCreateForm()
         {
-            throw new NotImplementedException();
+            Messenger.Default.Send(new ShowCreateFormMessage());
         }
     }
 }

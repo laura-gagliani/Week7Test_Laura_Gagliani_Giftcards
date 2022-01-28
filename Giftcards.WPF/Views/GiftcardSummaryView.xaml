@@ -31,8 +31,17 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="NEW GIFTCARD" Background="MediumVioletRed" Height="100" Width="140"
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" Content="Refresh list" Background="LightGray" Height="100" Width="140"
+                    FontFamily="impact" Foreground="white" FontSize="20" Command="{Binding Path=LoadGiftcardsCommand}"/>
+                <Button Grid.Column="0" Grid.Row="1" Content="NEW GIFTCARD" Background="MediumVioletRed" Height="100" Width="140"
                     FontFamily="impact" Foreground="white" FontSize="20" Command="{Binding Path=ShowCreateFormCommand}"/>
+            </Grid>
+           
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>

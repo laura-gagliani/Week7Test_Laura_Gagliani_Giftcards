@@ -17,6 +17,7 @@ namespace Giftcards.Core.Mock.InMemoryStorage
 
             Giftcards.Add(new Giftcard()
             {
+                Id = 1,
                 Sender = "Mario",
                 Recipient = "Mirella",
                 Message = "Buon anniversario!!",
@@ -26,6 +27,7 @@ namespace Giftcards.Core.Mock.InMemoryStorage
 
             Giftcards.Add(new Giftcard()
             {
+                Id=2,
                 Sender = "Iva",
                 Recipient = "Sara",
                 Message = "Per la mia nipote preferita",
@@ -35,6 +37,7 @@ namespace Giftcards.Core.Mock.InMemoryStorage
 
             Giftcards.Add(new Giftcard()
             {
+                Id = 3,
                 Sender = "Stefano",
                 Recipient = "Andrea",
                 Message = "Tanti auguri <3",

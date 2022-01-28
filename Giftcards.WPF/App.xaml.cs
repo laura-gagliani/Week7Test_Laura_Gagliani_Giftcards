@@ -1,4 +1,6 @@
-﻿using Giftcards.Core.Mock.InMemoryStorage;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Giftcards.Core.Mock.InMemoryStorage;
+using Giftcards.WPF.Messages;
 using Giftcards.WPF.ViewModels;
 using Giftcards.WPF.Views;
 using System;
@@ -18,6 +20,9 @@ namespace Giftcards.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Messenger.Default.Register<DialogMessage>(this, OnDialogMessageReceived);
+
+
             base.OnStartup(e);
 
             Storage.InitializeMemory();
@@ -27,6 +32,14 @@ namespace Giftcards.WPF
             view.DataContext = viewmodel;
 
             view.Show();
+        }
+
+        private void OnDialogMessageReceived(DialogMessage message)
+        {
+            MessageBoxResult result = MessageBox.Show(message.Content, message.Title, message.Buttons, message.Icon);
+
+            if (message.Callback != null)
+                message.Callback(result);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Giftcards.WPF.Messages;
+using Giftcards.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,16 @@ namespace Giftcards.WPF.Views
         public GiftcardSummaryView()
         {
             InitializeComponent();
+            Messenger.Default.Register<ShowCreateFormMessage>(this, OnShowCreateFormMessageReceived);
+        }
+
+        private void OnShowCreateFormMessageReceived(ShowCreateFormMessage message)
+        {
+            CreateGiftcardView createView = new CreateGiftcardView();
+            CreateGiftcardViewModel createViewModel = new CreateGiftcardViewModel();
+            createView.DataContext = createViewModel;
+
+            createView.Show();
         }
     }
 }
