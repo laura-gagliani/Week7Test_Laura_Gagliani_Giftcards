@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Giftcards.WPF.Views.GiftcardRowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Giftcards.WPF.Views"
+             xmlns:vm="clr-namespace:Giftcards.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vm:GiftcardRowViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="100" d:DesignWidth="590">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="2" Content="additional det."/>
+            <Button Grid.Column="3" Content="update"/>
+            <Button Grid.Column="4" Content="delete"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock Text="additional details"/>
+        </Grid>
+    </Grid>
+</UserControl>
